@@ -8,55 +8,57 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <h1 id="booking-title">Book et besøg</h1>
     <div id="booking-form">
-        <h2>Book et besøg</h2>
-        <form>
-            <!-- Navnefelt -->
-            <label for="name">Dit navn:</label>
-            <input type="text" id="name" required>
-            
-            <!-- Barnets navnefelt -->
-            <label for="child-name">Barnets navn:</label>
-            <input type="text" id="child-name" required>
-            
-            <!-- Emailfelt -->
-            <label for="email">Email:</label>
-            <input type="email" id="email" required>
-            
-            <!-- Telefonfelt -->
-            <label for="phone">Telefon:</label>
-            <input type="tel" id="phone" required>
-            
-            <!-- Dropdown-liste med datoer -->
-            <label for="date">Vælg en dato:</label>
-            <select id="date">
+        <img src="billede.jpg" id="form-image">
+        <form id="form">
+          <!-- Navnefelt -->
+          <label for="name">Dit navn:</label>
+          <input type="text" id="name" required>
+          
+          <!-- Emailfelt -->
+          <label for="email">Email:</label>
+          <input type="email" id="email" required>
+          
+          <!-- Telefonfelt -->
+          <label for="phone">Telefon:</label>
+          <input type="tel" id="phone" required>
+          
+          <!-- Dropdown-liste med datoer -->
+          <label for="date">Vælg en dato:</label>
+          <select id="date">
             <option value="23. Juni 2023 kl 17:00">23. Juni 2023 kl 17:00</option>
             <option value="30. Juni 2023 kl 15:00">30. Juni 2023 kl 15:00</option>
             <option value="15. August 2023 kl 08:00">15. August 2023 kl 08:00</option>
-            </select>
-            
-            <!-- Bekræftelsesknappen -->
-            <button type="button" onclick="confirmBooking()">Book et besøg</button>
+          </select>
+          
+          <!-- Bekræftelsesknappen -->
+          <button id="booking-knap" type="button" onclick="confirmBooking()">Bekræft booking</button>
         </form>
         
         <!-- Element til visning af bekræftelsesbesked -->
-        <p id="confirmation"></p>
-    </div>
+        <div id="confirmation" style="display: none;">
+          <img src="billede.jpg" id="confirmation-image">
+          <p id="confirmation-text"></p>
+        </div>
+      </div>
 </body>
 <script>
     function confirmBooking() {
         // Henter værdierne fra inputfelterne
         var name = document.getElementById("name").value;
-        var childName = document.getElementById("child-name").value;
         var email = document.getElementById("email").value;
         var phone = document.getElementById("phone").value;
         var date = document.getElementById("date").value;
 
         // Opretter bekræftelsesbeskeden med de indtastede værdier
-        var confirmationMessage = "Tak for din booking, " + name + "! Du og dit barn, " + childName + ", er blevet tilmeldt en rundvisning den " + date + " på Skivehus Skole. Vi ses!";
-        
-        // Viser bekræftelsesbeskeden
+        var confirmationMessage = "Tak for din booking, " + name + "! Du er blevet tilmeldt en rundvisning den " + date + ".";
+  
+        // Skjuler inputfelterne og viser bekræftelsesbeskeden og billedet
+        document.getElementById("form").style.display = "none";
         document.getElementById("confirmation").textContent = confirmationMessage;
+        document.getElementById("confirmation").style.display = "block";
+        document.getElementById("confirmation-image").style.display = "block";
     }
 </script>
 </html>
