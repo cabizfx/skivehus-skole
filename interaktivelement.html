@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width='device-width', initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="booking-form">
+        <h2>Book et besøg</h2>
+        <form>
+            <!-- Navnefelt -->
+            <label for="name">Dit navn:</label>
+            <input type="text" id="name" required>
+            
+            <!-- Barnets navnefelt -->
+            <label for="child-name">Barnets navn:</label>
+            <input type="text" id="child-name" required>
+            
+            <!-- Emailfelt -->
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+            
+            <!-- Telefonfelt -->
+            <label for="phone">Telefon:</label>
+            <input type="tel" id="phone" required>
+            
+            <!-- Dropdown-liste med datoer -->
+            <label for="date">Vælg en dato:</label>
+            <select id="date">
+            <option value="23. Juni 2023 kl 17:00">23. Juni 2023 kl 17:00</option>
+            <option value="30. Juni 2023 kl 15:00">30. Juni 2023 kl 15:00</option>
+            <option value="15. August 2023 kl 08:00">15. August 2023 kl 08:00</option>
+            </select>
+            
+            <!-- Bekræftelsesknappen -->
+            <button type="button" onclick="confirmBooking()">Book et besøg</button>
+        </form>
+        
+        <!-- Element til visning af bekræftelsesbesked -->
+        <p id="confirmation"></p>
+    </div>
+</body>
+<script>
+    function confirmBooking() {
+        // Henter værdierne fra inputfelterne
+        var name = document.getElementById("name").value;
+        var childName = document.getElementById("child-name").value;
+        var email = document.getElementById("email").value;
+        var phone = document.getElementById("phone").value;
+        var date = document.getElementById("date").value;
+
+        // Opretter bekræftelsesbeskeden med de indtastede værdier
+        var confirmationMessage = "Tak for din booking, " + name + "! Du og dit barn, " + childName + ", er blevet tilmeldt en rundvisning den " + date + " på Skivehus Skole. Vi ses!";
+        
+        // Viser bekræftelsesbeskeden
+        document.getElementById("confirmation").textContent = confirmationMessage;
+    }
+</script>
+</html>

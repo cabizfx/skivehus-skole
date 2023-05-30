@@ -1,0 +1,21 @@
+#booking-form {
+    text-align: center;
+  }
+  
+  form {
+    display: inline-block;
+    text-align: left;
+  }
+  
+  label, input, select {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  button {
+    margin-top: 10px;
+  }
+  
+  #confirmation {
+    margin-top: 20px;
+  }
