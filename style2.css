@@ -1,0 +1,214 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+#introTitel {
+  margin: 1rem;
+  text-align: center;
+}
+.containerTekst {
+    display: inline-block;
+    position: relative;
+    padding-left: 25px;
+    margin-right: 0;
+    margin: 10px 0 10px 0;
+    cursor: pointer;
+    font-family: 'Lato', sans-serif;
+    text-transform: uppercase;
+  }
+  
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #ccc;
+    border-radius: 50%;
+  }
+  
+  .containerTekst input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  .containerTekst:hover .checkmark {
+    background-color: #bbb;
+  }
+  
+  .containerTekst input:checked ~ .checkmark {
+    background-color: #2196F3;
+  }
+  
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  .containerTekst input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  .containerTekst .checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 6px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  #bookTitel {
+    font-family: 'Lato', sans-serif;
+  }
+  #sprogTitel, #kontaktTitel, #trinTitel {
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+  }
+  #sliderContainer {
+    text-align: center;
+    margin-bottom: 0px;
+    margin: 0 5rem;
+  }
+  
+  #dateDropdown {
+    width: 200px;
+    margin-top: 10px;
+  }
+  
+  #confirmation {
+    display: none;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  #confirmation p {
+    font-family: 'Lato', sans-serif;
+  }
+  
+  /* Nyt design */
+  
+  #sliderContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin: 0 5rem;
+  }
+  
+  .column {
+    width: 45%;
+    margin-bottom: 20px;
+  }
+  
+  #formContainer {
+    display: block;
+    margin: 0 1rem;
+  }
+  
+  #trinContainer {
+    margin-top: 0px;
+    padding: 0 5rem;
+  }
+  
+  #trinContainer label {
+    margin-right: 10px;
+  }
+  
+  #datoerContainer label {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    padding-right: 5px;
+  }
+  #dateDropdown {
+    margin-top: 20px;
+    border-radius: 3px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  #contactInfo {
+    margin-top: 20px;
+  }
+  
+  #contactInfo label {
+    font-family: 'Lato', sans-serif;
+    display: block;
+    margin-top: 10px;
+    font-weight: 400;
+  }
+  
+  #contactInfo input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+    margin-top: 5px;
+  }
+  
+  #bookButton {
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    display: block;
+    margin-top: 20px;
+    background-color: #ff7355;
+    color: #fff;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.5s;
+  }
+  
+  #bookButton:hover {
+    opacity: 70%;
+  }
+  
+  #confirmation {
+    display: none;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  /* mobil-størrelse */
+
+@media (min-width:48em) {
+  .header li {
+      float: left;
+  }
+}
+
+/* tablet-størrelse */
+
+@media screen and (min-width: 640px) {
+
+  .header .img-logo {
+      height: 60px;
+  }
+}
+
+/* computer-størrelse */
+
+@media screen and (min-width: 960px) {
+  #introTitel {
+    margin: 0;
+    text-align: left;
+  }
+  #sprogTitel, #kontaktTitel, #trinTitel {
+    text-align: left;
+  }
+  #formContainer {
+    margin: 0;
+  }
+  #trinContainer {
+    padding: 0;
+  }
+  #sliderContainer {
+    margin: 0;
+  }
+}

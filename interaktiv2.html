@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interaktiv element 2</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+  <div id="introTitel">
+    <h1 id="bookTitel">Book et besøg</h1>
+  </div>
+      
+      <div id="formContainer">
+        <h3 id="trinTitel">Hvor starter dit barn?</h3>
+        <div id="sliderContainer">
+          <label class="containerTekst">Indskoling
+            <input type="radio" name="trin" value="Indskoling" checked>
+            <span class="checkmark"></span>
+          </label>
+          <label class="containerTekst">Mellemtrin
+            <input type="radio" name="trin" value="Mellemtrin">
+            <span class="checkmark"></span>
+          </label>
+          <label class="containerTekst">Overbygning
+            <input type="radio" name="trin" value="Overbygning">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+        <h3 id="sprogTitel">Hvilket sprog snakker barnet?:</h3>
+      
+        <div id="trinContainer">
+          <label class="containerTekst">Dansk
+            <input type="radio" name="sprog" value="Dansk" checked>
+            <span class="checkmark"></span>
+          </label>
+          <label class="containerTekst">Ukrainsk
+            <input type="radio" name="sprog" value="Ukrainsk">
+            <span class="checkmark"></span>
+          </label>
+          <label class="containerTekst">Andet sprog
+            <input type="radio" name="sprog" value="Andet sprog">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      
+        <div id="datoerContainer">
+          <label for="dateDropdown">Vælg dato:</label>
+          <select id="dateDropdown">
+            <option value="" disabled selected>Vælg sprog først</option>
+          </select>
+        </div>
+      
+        <div id="contactInfo">
+          <h3 id="kontaktTitel">Kontaktinformation:</h3>
+          <label for="name">Navn:</label>
+          <input type="text" id="name" required>
+          <label for="email">E-mail:</label>
+          <input type="email" id="email" required>
+          <label for="phone">Telefonnummer:</label>
+          <input type="tel" id="phone" required>
+        </div>
+      
+        <button id="bookButton">Book et besøg</button>
+      </div>
+      
+      <div id="confirmation"></div>
+      
+</body>
+<script>
+var kontaktpersoner = [
+  {
+    navn: "Alberte Hansen",
+    trin: "Indskoling",
+    sprog: "Dansk",
+    datoer: [
+      "1. August 2023 kl 12:00",
+      "2. August 2023 kl 12:00"
+    ]
+  },
+  {
+    navn: "Birgitte Hansen",
+    trin: "Indskoling",
+    sprog: "Ukrainsk",
+    datoer: [
+      "3. August 2023 kl 12:00",
+      "4. August 2023 kl 12:00"
+    ]
+  },
+  {
+    navn: "Christine Hansen",
+    trin: "Indskoling",
+    sprog: "Andet sprog",
+    datoer: [
+      "5. August 2023 kl 12:00",
+      "6. August 2023 kl 12:00"
+    ]
+  },
+  {
+    navn: "Daniel Hansen",
+    trin: "Mellemtrin",
+    sprog: "Dansk",
+    datoer: [
+      "7. August 2023 kl 12:00",
+      "8. August 2023 kl 12:00"
+    ]
+  },
+  {
+    navn: "Erik Hansen",
+    trin: "Mellemtrin",
+    sprog: "Ukrainsk",
+    datoer: [
+      "9. August 2023 kl 12:00",
+      "10. August 2023 kl 12:00"
+    ]
+  },
+  {
+    navn: "Frederik Hansen",
+    trin: "Mellemtrin",
+    sprog: "Andet sprog",
+    datoer: [
+      "11. August 2023 kl 12:00",
+      "12. August 2023 kl 12:00"
+    ]
+  },
+  {
+    navn: "Gurli Hansen",
+    trin: "Overbygning",
+    sprog: "Dansk",
+    datoer: [
+      "13. August 2023 kl 12:00",
+      "14. August 2023 kl 12:00"
+    ]
+  },
+  {
+    navn: "Hans Hansen",
+    trin: "Overbygning",
+    sprog: "Ukrainsk",
+    datoer: [
+      "15. August 2023 kl 12:00",
+      "16. August 2023 kl 12:00"
+    ]
+  },
+  {
+    navn: "Ingrid Hansen",
+    trin: "Overbygning",
+    sprog: "Andet sprog",
+    datoer: [
+      "17. August 2023 kl 12:00",
+      "18. August 2023 kl 12:00"
+    ]
+  }
+];
+var kontaktpersoner = [
+  {
+    trin: 'Indskoling',
+    sprog: 'Dansk',
+    datoer: ["1. August 2023 kl 12:00", "2. August 2023 kl 12:00"]
+  },
+  {
+    trin: 'Indskoling',
+    sprog: 'Ukrainsk',
+    datoer: ["3. August 2023 kl 12:00", "4. August 2023 kl 12:00"]
+  },
+  {
+    trin: 'Indskoling',
+    sprog: 'Andet sprog',
+    datoer: ["5. August 2023 kl 12:00", "6. August 2023 kl 12:00"]
+  },
+  {
+    trin: 'Mellemtrin',
+    sprog: 'Dansk',
+    datoer: ["7. August 2023 kl 12:00", "8. August 2023 kl 12:00"]
+  },
+  {
+    trin: 'Mellemtrin',
+    sprog: 'Ukrainsk',
+    datoer: ["9. August 2023 kl 12:00", "10. August 2023 kl 12:00"]
+  },
+  {
+    trin: 'Mellemtrin',
+    sprog: 'Andet sprog',
+    datoer: ["11. August 2023 kl 12:00", "12. August 2023 kl 12:00"]
+  },
+  {
+    trin: 'Overbygning',
+    sprog: 'Dansk',
+    datoer: ["13. August 2023 kl 12:00", "14. August 2023 kl 12:00"]
+  },
+  {
+    trin: 'Overbygning',
+    sprog: 'Ukrainsk',
+    datoer: ["15. August 2023 kl 12:00", "16. August 2023 kl 12:00"]
+  },
+  {
+    trin: 'Overbygning',
+    sprog: 'Andet sprog',
+    datoer: ["17. August 2023 kl 12:00", "18. August 2023 kl 12:00"]
+  }
+];
+
+var slider = document.getElementById('sliderContainer');
+var trinContainer = document.getElementById('trinContainer');
+var dateDropdown = document.getElementById('dateDropdown');
+var formContainer = document.getElementById('formContainer');
+var confirmation = document.getElementById('confirmation');
+var nameInput = document.getElementById('name');
+var emailInput = document.getElementById('email');
+var phoneInput = document.getElementById('phone');
+
+slider.addEventListener('change', function() {
+  var selectedTrin = document.querySelector('input[name="trin"]:checked').value;
+  var filteredKontaktpersoner = kontaktpersoner.filter(function(kontaktperson) {
+    return kontaktperson.trin === selectedTrin;
+  });
+
+  var options = '';
+  for (var i = 0; i < filteredKontaktpersoner.length; i++) {
+    options += '<label class="containerTekst">' + filteredKontaktpersoner[i].sprog +
+      '<input type="radio" name="sprog" value="' + filteredKontaktpersoner[i].sprog + '">' +
+      '<span class="checkmark"></span>' +
+      '</label>';
+  }
+  trinContainer.innerHTML = options;
+  formContainer.style.display = 'block';
+  confirmation.style.display = 'none';
+});
+
+trinContainer.addEventListener('change', function() {
+  var selectedSprog = document.querySelector('input[name="sprog"]:checked').value;
+  var selectedTrin = document.querySelector('input[name="trin"]:checked').value;
+  var filteredKontaktpersoner = kontaktpersoner.filter(function(kontaktperson) {
+    return kontaktperson.sprog === selectedSprog && kontaktperson.trin === selectedTrin;
+  });
+
+  var options = '';
+  for (var i = 0; i < filteredKontaktpersoner[0].datoer.length; i++) {
+    options += '<option value="' + filteredKontaktpersoner[0].datoer[i] + '">' +
+      filteredKontaktpersoner[0].datoer[i] +
+      '</option>';
+  }
+  dateDropdown.innerHTML = options;
+});
+
+dateDropdown.addEventListener('change', function() {
+  formContainer.style.display = 'block';
+  confirmation.style.display = 'none';
+});
+
+document.getElementById('bookButton').addEventListener('click', function() {
+  var name = nameInput.value;
+  var email = emailInput.value;
+  var phone = phoneInput.value;
+  var selectedTrin = document.querySelector('input[name="trin"]:checked').value;
+  var selectedSprog = document.querySelector('input[name="sprog"]:checked').value;
+  var selectedDato = dateDropdown.value;
+
+  if (name && email && phone && selectedTrin && selectedSprog && selectedDato) {
+    var message = '<p>Tak for din booking, <b> ' + name + '</b>!</p>' +
+      '<p>Du har booket et besøg på Skivehus Skole d. <b> ' + selectedDato + '</b> i <b>' +
+      selectedTrin + 's-klyngen </b> med <b>' + selectedSprog + '</b> som sprog.</p>' +
+      '<p>Vi sender en bekræftelse til din e-mail: <b>' + email + '</b></p>';
+    confirmation.innerHTML = message;
+    confirmation.style.display = 'block';
+    formContainer.style.display = 'none';
+    resetForm();
+  }
+});
+
+function resetForm() {
+  nameInput.value = '';
+  emailInput.value = '';
+  phoneInput.value = '';
+  dateDropdown.selectedIndex = 0;
+}
+
+
+
+</script>
+</html>
