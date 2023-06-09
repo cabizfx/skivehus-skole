@@ -69,6 +69,7 @@
       
 </body>
 <script>
+// Variabel til opbevaring af kontaktpersoner med deres informationer
 var kontaktpersoner = [
   {
     navn: "Alberte Hansen",
@@ -152,54 +153,8 @@ var kontaktpersoner = [
     ]
   }
 ];
-var kontaktpersoner = [
-  {
-    trin: 'Indskoling',
-    sprog: 'Dansk',
-    datoer: ["1. August 2023 kl 12:00", "2. August 2023 kl 12:00"]
-  },
-  {
-    trin: 'Indskoling',
-    sprog: 'Ukrainsk',
-    datoer: ["3. August 2023 kl 12:00", "4. August 2023 kl 12:00"]
-  },
-  {
-    trin: 'Indskoling',
-    sprog: 'Andet sprog',
-    datoer: ["5. August 2023 kl 12:00", "6. August 2023 kl 12:00"]
-  },
-  {
-    trin: 'Mellemtrin',
-    sprog: 'Dansk',
-    datoer: ["7. August 2023 kl 12:00", "8. August 2023 kl 12:00"]
-  },
-  {
-    trin: 'Mellemtrin',
-    sprog: 'Ukrainsk',
-    datoer: ["9. August 2023 kl 12:00", "10. August 2023 kl 12:00"]
-  },
-  {
-    trin: 'Mellemtrin',
-    sprog: 'Andet sprog',
-    datoer: ["11. August 2023 kl 12:00", "12. August 2023 kl 12:00"]
-  },
-  {
-    trin: 'Overbygning',
-    sprog: 'Dansk',
-    datoer: ["13. August 2023 kl 12:00", "14. August 2023 kl 12:00"]
-  },
-  {
-    trin: 'Overbygning',
-    sprog: 'Ukrainsk',
-    datoer: ["15. August 2023 kl 12:00", "16. August 2023 kl 12:00"]
-  },
-  {
-    trin: 'Overbygning',
-    sprog: 'Andet sprog',
-    datoer: ["17. August 2023 kl 12:00", "18. August 2023 kl 12:00"]
-  }
-];
 
+// Variabler til at gemme reference til HTML-elementer
 var slider = document.getElementById('sliderContainer');
 var trinContainer = document.getElementById('trinContainer');
 var dateDropdown = document.getElementById('dateDropdown');
@@ -209,12 +164,17 @@ var nameInput = document.getElementById('name');
 var emailInput = document.getElementById('email');
 var phoneInput = document.getElementById('phone');
 
+// Lytter efter ændringer i slider (trinvalg)
 slider.addEventListener('change', function() {
+  // Henter værdien af den valgte trin-radioknap
   var selectedTrin = document.querySelector('input[name="trin"]:checked').value;
+  
+  // Filtrer kontaktpersoner baseret på valgt trin
   var filteredKontaktpersoner = kontaktpersoner.filter(function(kontaktperson) {
     return kontaktperson.trin === selectedTrin;
   });
 
+  // Genererer HTML-kode for valg af sprog baseret på filtrerede kontaktpersoner
   var options = '';
   for (var i = 0; i < filteredKontaktpersoner.length; i++) {
     options += '<label class="containerTekst">' + filteredKontaktpersoner[i].sprog +
@@ -222,33 +182,45 @@ slider.addEventListener('change', function() {
       '<span class="checkmark"></span>' +
       '</label>';
   }
+
+  // Opdaterer trinContainer med de genererede valgmuligheder
   trinContainer.innerHTML = options;
-  formContainer.style.display = 'block';
-  confirmation.style.display = 'none';
+  formContainer.style.display = 'block'; // Viser formularcontainer
+  confirmation.style.display = 'none'; // Skjuler bekræftelsesmeddelelse
 });
 
+// Lytter efter ændringer i trinContainer (sprogvalg)
 trinContainer.addEventListener('change', function() {
+  // Henter værdien af det valgte sprog
   var selectedSprog = document.querySelector('input[name="sprog"]:checked').value;
   var selectedTrin = document.querySelector('input[name="trin"]:checked').value;
+
+  // Filtrer kontaktpersoner baseret på valgt sprog og trin
   var filteredKontaktpersoner = kontaktpersoner.filter(function(kontaktperson) {
     return kontaktperson.sprog === selectedSprog && kontaktperson.trin === selectedTrin;
   });
 
+  // Genererer HTML-kode for dato-dropdown baseret på den første kontaktpersons datoer
   var options = '';
   for (var i = 0; i < filteredKontaktpersoner[0].datoer.length; i++) {
     options += '<option value="' + filteredKontaktpersoner[0].datoer[i] + '">' +
       filteredKontaktpersoner[0].datoer[i] +
       '</option>';
   }
+
+  // Opdaterer datoDropdown med de genererede valgmuligheder
   dateDropdown.innerHTML = options;
 });
 
+// Lytter efter ændringer i datoDropdown (datovalg)
 dateDropdown.addEventListener('change', function() {
-  formContainer.style.display = 'block';
-  confirmation.style.display = 'none';
+  formContainer.style.display = 'block'; // Viser formularcontainer
+  confirmation.style.display = 'none'; // Skjuler bekræftelsesmeddelelse
 });
 
+// Lytter efter klik på "Book et besøg"-knappen
 document.getElementById('bookButton').addEventListener('click', function() {
+  // Indsamler inputværdier fra formular
   var name = nameInput.value;
   var email = emailInput.value;
   var phone = phoneInput.value;
@@ -256,26 +228,30 @@ document.getElementById('bookButton').addEventListener('click', function() {
   var selectedSprog = document.querySelector('input[name="sprog"]:checked').value;
   var selectedDato = dateDropdown.value;
 
+  // Tjekker om alle felter er udfyldt
   if (name && email && phone && selectedTrin && selectedSprog && selectedDato) {
+    // Genererer bekræftelsesmeddelelse med de indtastede værdier
     var message = '<p>Tak for din booking, <b> ' + name + '</b>!</p>' +
       '<p>Du har booket et besøg på Skivehus Skole d. <b> ' + selectedDato + '</b> i <b>' +
       selectedTrin + 's-klyngen </b> med <b>' + selectedSprog + '</b> som sprog.</p>' +
       '<p>Vi sender en bekræftelse til din e-mail: <b>' + email + '</b></p>';
+
+    // Opdaterer bekræftelsesdiv'en med meddelelsen og viser den
     confirmation.innerHTML = message;
     confirmation.style.display = 'block';
+
+    // Skjuler formularcontainer og nulstiller formularfelter
     formContainer.style.display = 'none';
     resetForm();
   }
 });
 
+// Funktion til at nulstille formularfelter
 function resetForm() {
   nameInput.value = '';
   emailInput.value = '';
   phoneInput.value = '';
   dateDropdown.selectedIndex = 0;
 }
-
-
-
 </script>
 </html>
