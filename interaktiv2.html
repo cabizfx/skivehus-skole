@@ -11,7 +11,7 @@
   <div id="introTitel">
     <h1 id="bookTitel">Book et besøg</h1>
   </div>
-      
+    <div id="formParrent">
       <div id="formContainer">
         <h3 id="trinTitel">Hvor starter dit barn?</h3>
         <div id="sliderContainer">
@@ -51,25 +51,22 @@
             <option value="" disabled selected>Vælg sprog først</option>
           </select>
         </div>
-      
-        <div id="contactInfo">
-          <h3 id="kontaktTitel">Kontaktinformation:</h3>
-          <label for="name">Navn:</label>
-          <input type="text" id="name" required>
-          <label for="email">E-mail:</label>
-          <input type="email" id="email" required>
-          <label for="phone">Telefonnummer:</label>
-          <input type="tel" id="phone" required>
-        </div>
-      
+      </div>
+      <div id="contactInfo">
+        <h3 id="kontaktTitel">Kontaktinformation:</h3>
+        <label for="name">Navn:</label>
+        <input type="text" id="name" required>
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" required>
+        <label for="phone">Telefonnummer:</label>
+        <input type="tel" id="phone" required>
         <button id="bookButton">Book et besøg</button>
       </div>
-      
-      <div id="confirmation"></div>
-      
+    </div>
+    <div id="confirmation"></div>
 </body>
 <script>
-// Variabel til opbevaring af kontaktpersoner med deres informationer
+ // Variabel til opbevaring af kontaktpersoner med deres informationer
 var kontaktpersoner = [
   {
     navn: "Alberte Hansen",
@@ -241,7 +238,7 @@ document.getElementById('bookButton').addEventListener('click', function() {
     confirmation.style.display = 'block';
 
     // Skjuler formularcontainer og nulstiller formularfelter
-    formContainer.style.display = 'none';
+    formParrent.style.display = 'none';
     resetForm();
   }
 });

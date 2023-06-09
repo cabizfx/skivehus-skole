@@ -197,18 +197,31 @@
 @media screen and (min-width: 960px) {
   #introTitel {
     margin: 0;
-    text-align: left;
+    text-align: center;
   }
   #sprogTitel, #kontaktTitel, #trinTitel {
     text-align: left;
   }
+  #formParrent {
+    display: flex;
+    justify-content: center;
+    gap: 5rem;
+  }
+  .containerTekst {
+    padding-right: 1rem;
+  }
   #formContainer {
     margin: 0;
+    align-self: center;
   }
   #trinContainer {
     padding: 0;
   }
+  #trinTitel, #sprogTitel {
+    margin: 0;
+  }
   #sliderContainer {
     margin: 0;
+    padding-bottom: 1rem;
   }
 }
